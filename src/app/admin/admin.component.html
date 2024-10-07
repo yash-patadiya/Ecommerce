@@ -1,0 +1,51 @@
+<div class="admin-container">
+  <form class="admin-form" (ngSubmit)="addProduct()">
+    <div class="form-group">
+      <label for="productId">Product ID</label>
+      <input type="number" id="productId" name="productId" [(ngModel)]="newProduct.id">
+    </div>
+
+    <div class="form-group">
+      <label for="productName">Product Name</label>
+      <input type="text" id="productName" name="productName" [(ngModel)]="newProduct.caption">
+    </div>
+
+    <div class="form-group">
+      <label for="productDescription">Product Description</label>
+      <textarea id="productDescription" name="productDescription" [(ngModel)]="newProduct.description"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="productPrice">Price</label>
+      <input type="number" id="productPrice" name="productPrice" step="0.01" [(ngModel)]="newProduct.price">
+    </div>
+
+    <div class="form-group">
+      <label for="productCategory">Category</label>
+      <select id="productCategory" name="productCategory" [(ngModel)]="newProduct.category">
+        <option value="">Select a category</option>
+        <option value="Hot Sales">Hot Sales</option>
+        <option value="New Arrivals">New Arrivals</option>
+        <option value="New Trend">New Trend</option>
+        <!-- Add more categories as needed -->
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="productImage">Product Image URL</label>
+      <input type="url" id="productImage" name="productImage" [(ngModel)]="newProduct.image">
+    </div>
+
+    <button type="submit" class="btn-submit">Add Product</button>
+  </form>
+
+  <div class="product-list">
+    <div class="product" *ngFor="let product of products">
+      <img [src]="product.image" [alt]="product.category">
+      <h3>{{ product.caption }}</h3>
+      <p>Price: ${{ product.price.toFixed(2) }}</p>
+      <p>Category: {{ product.category }}</p>
+    </div>
+    <!-- Repeat the above div for each product -->
+  </div>
+</div>
